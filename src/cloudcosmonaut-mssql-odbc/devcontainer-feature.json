@@ -1,0 +1,34 @@
+{
+    "id": "cloudcosmonaut-mssql-odbc",
+    "version": "1.0.0",
+    "name": "MSQL ODBC 18 for Linux",
+    "documentationURL": "https://github.com/cloudcosmonaut/devcontainer-feature-mssql-odbc",
+    "description": "Installs the Microsoft ODBC 18 drivers on Linux",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "18",
+            "proposals": [
+                "18",
+                "17"
+            ],
+            "description": "Select MSSQL ODBC version."
+        },
+        "extensions": {
+            "type": "string",
+            "default": "",
+            "description": "Optional comma separated list of extensions to install in profile."
+        },
+        "installTools": {
+            "type": "boolean",
+            "description": "Optionally install Tools (bcp and sqlcmd)",
+            "default": false
+        }
+    },
+    "containerEnv": {
+        "PATH": "/opt/mssql-tools18/bin:${PATH}"
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

@@ -1,0 +1,46 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - 'main'
+    path:
+    - 'src'
+
+  pull_request:
+    branches:
+    - '!main'
+    path:
+      - 'src'
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  test-install:
+    continue-on-error: true
+    strategy:
+      matrix:
+        container: ['ubuntu:22.04', 'ubuntu:20.04', 'debian:12', 'debian:11', 'debian:10']
+
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
+    steps:
+
+    - uses: actions/checkout@v4
+      with:
+        sparse-checkout: |
+          .github
+          src/install.sh
+
+    - run: |
+        export DEBIAN_FRONTEND=noninteractive
+        apt update -y
+        apt install \
+          curl \
+          lsb-release -y
+
+    - run: |
+        # required for the install script
+        export _REMOTE_USER='vscode'
+        ./src/cloudcosmonaut-mssql-odbc/install.sh
