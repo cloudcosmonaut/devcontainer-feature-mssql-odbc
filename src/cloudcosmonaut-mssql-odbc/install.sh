@@ -1,5 +1,6 @@
 #!/bin/bash
 
+INSTALL_VERSION=${VERSION:-18}
 INSTALLTOOLS=${INSTALLTOOLS:-false}
 
 if [ "$(id -u)" -ne 0 ]; then
@@ -15,12 +16,32 @@ fi
 install_apt() {
     export ACCEPT_EULA=Y
     apt update
-    apt install -y msodbcsql18  mssql-tools18
+
+    if [ "${INSTALLTOOLS}" = true ]; then
+        if [ "${INSTALL_VERSION}" = "17" ]; then
+            apt install -y mssql-tools
+        else
+            apt install -y mssql-tools${INSTALL_VERSION}
+        fi
+    else
+        apt install -y msodbcsql${INSTALL_VERSION}
+    fi
+
+    # Add symlink for tools location for v18, so the path from the configuration is still valid
+    if [ "${INSTALLTOOLS}" = true ] && [ "${INSTALL_VERSION}" = "18" ]; then
+        ln -s /opt/mssql-tools${INSTALL_VERSION} /opt/mssql-tools
+    fi
 }
 
 install_debian() {
     export DEBIAN_FRONTEND=noninteractive
     export ACCEPT_EULA=Y
+    apt update -y
+    apt install -y \
+        apt-transport-https \
+        curl \
+        gnupg \
+        lsb-release
 
     if [[ "12" == "$VERSION_ID" ]];
     then
@@ -41,6 +62,13 @@ install_debian() {
 }
 
 install_ubuntu() {
+    apt update -y
+    apt install -y \
+        apt-transport-https \
+        curl \
+        gnupg \
+        lsb-release
+
     if ! [[ "18.04 20.04 22.04 23.04" == *"$(lsb_release -rs)"* ]];
     then
         echo "Ubuntu $(lsb_release -rs) is not currently supported.";
