@@ -1,0 +1,33 @@
+on:
+  workflow_dispatch:
+  push:
+    paths:
+    - 'src'
+    - 'test'
+    - '.github/workflows/devcontainer-tests.yaml'
+
+  pull_request:
+    paths:
+      - 'src'
+      - 'test'
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  test-install:
+    continue-on-error: true
+
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/devcontainers/javascript-node:0-18
+    steps:
+
+    - uses: actions/checkout@v4
+
+    - run: |
+        npm install
+
+    - run : |
+        export PATH=$PATH:$(pwd)/node_modules/.bin
+        devcontainer features test . -q
