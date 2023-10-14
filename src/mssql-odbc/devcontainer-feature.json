@@ -1,6 +1,6 @@
 {
-    "id": "cloudcosmonaut-mssql-odbc",
-    "version": "1.0.0",
+    "id": "mssql-odbc",
+    "version": "1.0.1",
     "name": "MSQL ODBC for Linux",
     "documentationURL": "https://github.com/cloudcosmonaut/devcontainer-features",
     "description": "Installs the Microsoft ODBC drivers on Linux",
@@ -23,7 +23,7 @@
     "containerEnv": {
         "PATH": "/opt/mssql-tools/bin:${PATH}"
     },
-    "installsAfter": [
-        "ghcr.io/devcontainers/features/common-utils"
-    ]
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/common-utils:2": {}
+    }
 }

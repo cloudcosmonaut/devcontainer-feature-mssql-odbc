@@ -23,6 +23,7 @@ jobs:
       matrix:
         features:
           - mssql-odbc
+          - opentofu
         baseImage:
           - debian:latest
           - debian:11
@@ -39,7 +40,7 @@ jobs:
 
     - uses: actions/setup-node@v3
       with:
-        version_version: 18.x
+        node-version: 18.x
 
     - run: |
         npm install -g @devcontainers/cli
