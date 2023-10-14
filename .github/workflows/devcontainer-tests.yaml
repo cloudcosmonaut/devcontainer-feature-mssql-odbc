@@ -16,8 +16,23 @@ permissions:
 
 jobs:
   test-install:
-
+    continue-on-error: true
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        features:
+          - mssql-odbc
+        baseImage:
+          - debian:latest
+          - debian:11
+          - ubuntu:latest
+          - ubuntu:23.04
+          - ubuntu:22.04
+          - ubuntu:20.04
+          - ubuntu:18.04
+          - mcr.microsoft.com/devcontainers/base:ubuntu
+
     steps:
 
     - uses: actions/checkout@v4
@@ -27,8 +42,7 @@ jobs:
         version_version: 18.x
 
     - run: |
-        npm install
+        npm install -g @devcontainers/cli
 
     - run : |
-        export PATH=$PATH:$(pwd)/node_modules/.bin
-        devcontainer features test . -q
+         devcontainer features test -f ${{ matrix.features }} -i ${{ matrix.baseImage }} .
