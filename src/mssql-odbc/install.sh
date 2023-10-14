@@ -52,7 +52,7 @@ install_debian() {
         curl -Ssf https://packages.microsoft.com/config/debian/11/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
 
     else
-        curl https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
+        curl -Ssf https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
 
         curl -Ssf https://packages.microsoft.com/config/debian/$VERSION_ID/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
 
@@ -75,9 +75,9 @@ install_ubuntu() {
         exit;
     fi
 
-    curl https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
+    curl -Ssf https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
 
-    curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
+    curl -Ssf https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
 
     install_apt
 }
@@ -91,7 +91,7 @@ case "${ID}" in
     ubuntu) install_ubuntu ;;
 
     *)
-        echo "Unsupported platform, please create a PR at https://github.com/cloudcosmonaut/devcontainer-feature-mssql-odbc"
+        echo "Unsupported platform, please create a PR at https://github.com/cloudcosmonaut/devcontainer-features"
         exit 1
     ;;
 esac
