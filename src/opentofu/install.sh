@@ -11,6 +11,11 @@ if [ -z "${_REMOTE_USER}" ]; then
 fi
 
 install_package() {
+    apt update -y
+    apt install -y \
+        curl \
+        jq
+
     case "$(uname -m)" in
         x86_64) ARCH=amd64 ;;
 
@@ -20,7 +25,7 @@ install_package() {
         ;;
     esac
 
-    latest=$(curl https://github.com/opentofu/opentofu/releases/latest -H 'accept: application/json' -LfsS | jq '.tag_name' -r)
+    latest=$(curl -fsS https://github.com/opentofu/opentofu/releases/latest -H 'accept: application/json' -LfsS | jq '.tag_name' -r)
 
     curl -fsSL "https://github.com/opentofu/opentofu/releases/download/${latest}/tofu_${latest:1}_${ARCH}.deb" --output tofu_${latest:1}_${ARCH}.deb
 
