@@ -2,7 +2,7 @@
     "with_tools": {
         "image": "debian",
         "features": {
-            "cloudcosmonaut-mssql-odbc": {
+            "mssql-odbc": {
                 "installTools": true
             }
         }
@@ -10,7 +10,7 @@
     "17_without_tools": {
         "image": "debian",
         "features": {
-            "cloudcosmonaut-mssql-odbc": {
+            "mssql-odbc": {
                 "version": "17",
                 "installTools": false
             }
@@ -19,7 +19,7 @@
     "17_with_tools": {
         "image": "debian",
         "features": {
-            "cloudcosmonaut-mssql-odbc": {
+            "mssql-odbc": {
                 "version": "17",
                 "installTools": true
             }
