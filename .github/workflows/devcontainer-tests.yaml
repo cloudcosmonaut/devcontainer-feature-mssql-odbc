@@ -23,6 +23,7 @@ jobs:
       matrix:
         features:
           - mssql-odbc
+          - opentofu
         baseImage:
           - debian:latest
           - debian:11

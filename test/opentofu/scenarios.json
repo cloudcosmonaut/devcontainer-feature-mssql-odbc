@@ -1,0 +1,14 @@
+{
+    "debian": {
+        "image": "debian",
+        "features": {
+            "opentofu": {}
+        }
+    },
+    "ubuntu": {
+        "image": "ubuntu",
+        "features": {
+            "opentofu": {}
+        }
+    }
+}

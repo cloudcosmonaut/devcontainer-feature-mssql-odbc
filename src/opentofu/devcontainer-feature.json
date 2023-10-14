@@ -1,0 +1,10 @@
+{
+    "id": "opentofu",
+    "version": "1.0.0",
+    "name": "Opentofu for Linux",
+    "documentationURL": "https://github.com/cloudcosmonaut/devcontainer-features",
+    "description": "Installs Opentofu on Linux",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/common-utils:2": {}
+    }
+}
