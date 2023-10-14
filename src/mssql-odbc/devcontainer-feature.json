@@ -23,7 +23,7 @@
     "containerEnv": {
         "PATH": "/opt/mssql-tools/bin:${PATH}"
     },
-    "dependsOn": {
-        "ghcr.io/devcontainers/features/common-utils:2": {}
-    }
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils:2"
+    ]
 }

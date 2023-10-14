@@ -16,6 +16,8 @@ permissions:
 
 jobs:
   test-install:
+    if: ${{ github.ref != 'refs/heads/main' }}
+
     continue-on-error: true
     runs-on: ubuntu-latest
 
