@@ -24,5 +24,22 @@
                 "installTools": true
             }
         }
+    },
+    "alpine_18_with_tools": {
+        "image": "alpine",
+        "features": {
+            "mssql-odbc": {
+                "version": "18",
+                "installTools": true
+            }
+        }
+    },
+    "alpine_18_without_tools": {
+        "image": "alpine",
+        "features": {
+            "mssql-odbc": {
+                "version": "18"
+            }
+        }
     }
 }

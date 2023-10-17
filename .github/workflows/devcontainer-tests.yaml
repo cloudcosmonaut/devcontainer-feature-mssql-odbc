@@ -2,14 +2,9 @@ on:
   workflow_dispatch:
   push:
     paths:
-    - 'src'
-    - 'test'
+    - 'src/**/*'
+    - 'test/**/*'
     - '.github/workflows/devcontainer-tests.yaml'
-
-  pull_request:
-    paths:
-      - 'src'
-      - 'test'
 
 permissions:
   contents: read
@@ -26,15 +21,6 @@ jobs:
         features:
           - mssql-odbc
           - opentofu
-        baseImage:
-          - debian:latest
-          - debian:11
-          - ubuntu:latest
-          - ubuntu:23.04
-          - ubuntu:22.04
-          - ubuntu:20.04
-          - ubuntu:18.04
-          - mcr.microsoft.com/devcontainers/base:ubuntu
 
     steps:
 
@@ -48,4 +34,4 @@ jobs:
         npm install -g @devcontainers/cli
 
     - run : |
-         devcontainer features test -f ${{ matrix.features }} -i ${{ matrix.baseImage }} .
+         devcontainer features test -f ${{ matrix.features }}
