@@ -32,6 +32,9 @@ jobs:
           - ubuntu:22.04
           - ubuntu:20.04
           - ubuntu:18.04
+          - alpine:3.16
+          - alpine:3.17
+          - alpine:3.18
           - mcr.microsoft.com/devcontainers/base:ubuntu
 
     steps:
