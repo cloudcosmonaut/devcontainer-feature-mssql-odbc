@@ -2,14 +2,14 @@ on:
   workflow_dispatch:
   push:
     paths:
-    - 'src'
-    - 'test'
+    - 'src/**/*'
+    - 'test/**/*'
     - '.github/workflows/devcontainer-tests.yaml'
 
   pull_request:
     paths:
-      - 'src'
-      - 'test'
+      - 'src/**/*'
+      - 'test/**/*'
 
 permissions:
   contents: read
