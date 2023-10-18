@@ -1,0 +1,14 @@
+{
+    "debian": {
+        "image": "debian",
+        "features": {
+            "gh-cli": {}
+        }
+    },
+    "ubuntu": {
+        "image": "ubuntu",
+        "features": {
+            "gh-cli": {}
+        }
+    }
+}
