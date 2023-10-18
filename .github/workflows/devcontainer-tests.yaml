@@ -24,17 +24,15 @@ jobs:
     strategy:
       matrix:
         features:
+          - gh-cli
           - mssql-odbc
           - opentofu
+
         baseImage:
           - debian:latest
           - debian:11
           - ubuntu:latest
-          - ubuntu:23.04
           - ubuntu:22.04
-          - ubuntu:20.04
-          - ubuntu:18.04
-          - mcr.microsoft.com/devcontainers/base:ubuntu
 
     steps:
 

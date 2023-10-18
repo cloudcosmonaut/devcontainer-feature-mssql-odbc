@@ -1,0 +1,7 @@
+{
+    "id": "gh-cli",
+    "version": "1.0.0",
+    "name": "GitHub CLI for Linux",
+    "documentationURL": "https://github.com/cloudcosmonaut/devcontainer-features",
+    "description": "Installs GitHub CLI on Linux"
+}
